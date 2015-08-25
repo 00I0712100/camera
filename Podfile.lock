@@ -1,0 +1,18 @@
+PODS:
+  - DLCImagePickerController (0.0.1):
+    - DLCImagePickerController/Core (= 0.0.1)
+    - DLCImagePickerController/FilterSamples (= 0.0.1)
+  - DLCImagePickerController/Core (0.0.1):
+    - GPUImage
+  - DLCImagePickerController/FilterSamples (0.0.1)
+  - GPUImage (0.1.1)
+
+DEPENDENCIES:
+  - DLCImagePickerController
+  - GPUImage (= 0.1.1)
+
+SPEC CHECKSUMS:
+  DLCImagePickerController: b024128bcd13245f235ca0abd21a7e9c3872878e
+  GPUImage: faa188dfbf76c8860fa00a1d07fa0680ed433845
+
+COCOAPODS: 0.38.2
