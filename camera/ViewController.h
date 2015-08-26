@@ -12,9 +12,9 @@
 
 @interface ViewController : UIViewController <UINavigationControllerDelegate>
 {
-IBOutlet UIImageView *imageView;
+    IBOutlet UIImageView *imageView;
 }
--(IBAction)takePhoto;
+
 -(IBAction)openLibrary;
 -(IBAction)postToTwitter;
 -(IBAction)postToFacebook;

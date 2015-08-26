@@ -9,7 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - DLCImagePickerController
-  - GPUImage (= 0.1.1)
+  - GPUImage
 
 SPEC CHECKSUMS:
   DLCImagePickerController: b024128bcd13245f235ca0abd21a7e9c3872878e

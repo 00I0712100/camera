@@ -27,15 +27,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)takePhoto {
-    /*
-    DLCImagePickerController *picker = [[DLCImagePickerController alloc] init];
-    picker.delegate = self;
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
-    //[self presentViewController:picker animated:YES completion:nil];
-    [self.view addSubview:picker.view];
-     */
-}
 
 
 -(IBAction)postToTwitter{

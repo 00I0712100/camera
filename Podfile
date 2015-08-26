@@ -1,5 +1,4 @@
-platform :ios, '6.0'
-inhibit_all_warnings!
 
-pod 'GPUImage', '0.1.1'
+platform :ios, '8.0'
+pod 'GPUImage'
 pod 'DLCImagePickerController'

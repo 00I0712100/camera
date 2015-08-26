@@ -330,6 +330,7 @@
 }
 
 -(IBAction) takePhoto:(id)sender{
+    // TODO: 写真撮影
     [self.photoCaptureButton setEnabled:NO];
     
     if (!isStatic) {

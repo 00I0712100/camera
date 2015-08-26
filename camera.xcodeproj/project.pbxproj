@@ -13,6 +13,7 @@
 		E5005A811B3181D600E40EB0 /* lg_053_96 のコピー.png in Resources */ = {isa = PBXBuildFile; fileRef = E5005A7E1B3181D600E40EB0 /* lg_053_96 のコピー.png */; };
 		E5005A831B31835D00E40EB0 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5005A821B31835D00E40EB0 /* CoreImage.framework */; };
 		E5005A861B318A5000E40EB0 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5005A851B318A5000E40EB0 /* FilterViewController.m */; };
+		E52AD6C41B8D4551005B8755 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E52AD6C31B8D4551005B8755 /* CameraViewController.m */; };
 		E55E56E91B89AD0B00DB9BFE /* ArrangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55E56E81B89AD0B00DB9BFE /* ArrangeViewController.m */; };
 		E55E56EB1B8AB3BD00DB9BFE /* orafu.png in Resources */ = {isa = PBXBuildFile; fileRef = E55E56EA1B8AB3BD00DB9BFE /* orafu.png */; };
 		E55E56EE1B8B4FB500DB9BFE /* KaouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55E56ED1B8B4FB500DB9BFE /* KaouViewController.m */; };
@@ -48,6 +49,8 @@
 		E5005A821B31835D00E40EB0 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		E5005A841B318A5000E40EB0 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
 		E5005A851B318A5000E40EB0 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
+		E52AD6C21B8D4551005B8755 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		E52AD6C31B8D4551005B8755 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		E55E56E71B89AD0B00DB9BFE /* ArrangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrangeViewController.h; sourceTree = "<group>"; };
 		E55E56E81B89AD0B00DB9BFE /* ArrangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrangeViewController.m; sourceTree = "<group>"; };
 		E55E56EA1B8AB3BD00DB9BFE /* orafu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orafu.png; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 				E55E56E81B89AD0B00DB9BFE /* ArrangeViewController.m */,
 				E55E56EC1B8B4FB500DB9BFE /* KaouViewController.h */,
 				E55E56ED1B8B4FB500DB9BFE /* KaouViewController.m */,
+				E52AD6C21B8D4551005B8755 /* CameraViewController.h */,
+				E52AD6C31B8D4551005B8755 /* CameraViewController.m */,
 				E5D1235F1B1F0AED00089B14 /* Main.storyboard */,
 				E5D123621B1F0AED00089B14 /* Images.xcassets */,
 				E5D123641B1F0AED00089B14 /* LaunchScreen.xib */,
@@ -330,6 +335,7 @@
 				E5D1235E1B1F0AED00089B14 /* ViewController.m in Sources */,
 				E5D1235B1B1F0AED00089B14 /* AppDelegate.m in Sources */,
 				E5005A861B318A5000E40EB0 /* FilterViewController.m in Sources */,
+				E52AD6C41B8D4551005B8755 /* CameraViewController.m in Sources */,
 				E5D123581B1F0AED00089B14 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
