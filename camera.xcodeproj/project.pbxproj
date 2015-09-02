@@ -14,6 +14,7 @@
 		E5005A831B31835D00E40EB0 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5005A821B31835D00E40EB0 /* CoreImage.framework */; };
 		E5005A861B318A5000E40EB0 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5005A851B318A5000E40EB0 /* FilterViewController.m */; };
 		E52AD6C41B8D4551005B8755 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E52AD6C31B8D4551005B8755 /* CameraViewController.m */; };
+		E52AD6C61B8E213A005B8755 /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = E52AD6C51B8E213A005B8755 /* black.png */; };
 		E55E56E91B89AD0B00DB9BFE /* ArrangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55E56E81B89AD0B00DB9BFE /* ArrangeViewController.m */; };
 		E55E56EB1B8AB3BD00DB9BFE /* orafu.png in Resources */ = {isa = PBXBuildFile; fileRef = E55E56EA1B8AB3BD00DB9BFE /* orafu.png */; };
 		E55E56EE1B8B4FB500DB9BFE /* KaouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55E56ED1B8B4FB500DB9BFE /* KaouViewController.m */; };
@@ -51,6 +52,7 @@
 		E5005A851B318A5000E40EB0 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		E52AD6C21B8D4551005B8755 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		E52AD6C31B8D4551005B8755 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		E52AD6C51B8E213A005B8755 /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
 		E55E56E71B89AD0B00DB9BFE /* ArrangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrangeViewController.h; sourceTree = "<group>"; };
 		E55E56E81B89AD0B00DB9BFE /* ArrangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrangeViewController.m; sourceTree = "<group>"; };
 		E55E56EA1B8AB3BD00DB9BFE /* orafu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orafu.png; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		E5D123541B1F0AED00089B14 /* camera */ = {
 			isa = PBXGroup;
 			children = (
+				E52AD6C51B8E213A005B8755 /* black.png */,
 				E55E56EA1B8AB3BD00DB9BFE /* orafu.png */,
 				E5D31A1B1B4D33C70015DFDB /* カメラアプリ.png */,
 				E5005A7C1B3181D600E40EB0 /* lg_008_64.png */,
@@ -280,6 +283,7 @@
 				E55E56F21B8C061C00DB9BFE /* Podfile in Resources */,
 				E5005A7F1B3181D600E40EB0 /* lg_008_64.png in Resources */,
 				E5005A811B3181D600E40EB0 /* lg_053_96 のコピー.png in Resources */,
+				E52AD6C61B8E213A005B8755 /* black.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +418,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -451,7 +455,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -465,7 +469,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tomoko Takahashi (Q9L8U7392B)";
 				INFOPLIST_FILE = camera/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -478,7 +482,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tomoko Takahashi (Q9L8U7392B)";
 				INFOPLIST_FILE = camera/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

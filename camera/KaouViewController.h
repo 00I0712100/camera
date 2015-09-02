@@ -10,9 +10,16 @@
 
 @interface KaouViewController : UIViewController {
     IBOutlet UIImageView *imageView;
+    UISlider *sl;
+    UILabel *lb;
 }
 
 @property(nonatomic)UIImage *passedImage;
+@property (nonatomic, retain) IBOutlet UISlider *sl;
+@property (nonatomic, retain) IBOutlet UILabel *lb;
+
+- (IBAction)SliderChanged:(id)sender;
 
 
 @end
+

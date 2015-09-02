@@ -370,6 +370,16 @@
         NSDictionary *info = [[NSDictionary alloc] initWithObjectsAndKeys:
                               UIImageJPEGRepresentation(currentFilteredVideoFrame, 1), @"data", nil];
         [self.delegate imagePickerController:self didFinishPickingMediaWithInfo:info];
+        /// currentFilteredVideoFrameをUserDefaultsに保存する
+        // NSUserDefaultsに保存・更新する
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        NSData *imageData = UIImagePNGRepresentation(currentFilteredVideoFrame);
+        [ud setObject:imageData forKey:@"hogehoge"];
+        
+
+        /// modalの画面を閉じる
+        [self dismissViewControllerAnimated:YES completion:nil];
+
     }
 }
 

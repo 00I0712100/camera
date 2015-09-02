@@ -42,5 +42,30 @@
 - (IBAction)rotationImage:(UIRotationGestureRecognizer *)sender {
     sender.view.transform = CGAffineTransformMakeRotation(sender.rotation);
 }
+#import "KaouViewController.h"
+
+
+
+
+@synthesize sl, lb;
+
+//- (void)dealloc {
+//    [sl release];
+//    [lb release];
+//    [super dealloc];
+//}
+
+- (IBAction)SliderChanged:(id)sender {
+    
+    NSLog(@"スライダーの値が変わりました");
+    
+    //スライダーの現在値を取得
+    float v = 0;
+    v = sl.value;
+    
+    //ラベルに現在値を表示
+    lb.text = [NSString stringWithFormat:@"%2.f",v];
+}
+
 
 @end

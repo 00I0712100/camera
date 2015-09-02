@@ -11,7 +11,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 #define FOCUS_LAYER_RECT_SIZE 73.0
-@interface CameraViewController ()<AVCaptureAudioDataOutputSampleBufferDelegate,UIImagePickerControllerDelegate,UIGestureRecognizerDelegate>
+@interface CameraViewController ()<AVCaptureVideoDataOutputSampleBufferDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet GPUImageView *previewImage;
 @property (weak, nonatomic) IBOutlet GPUImageView *filterImage;
@@ -29,7 +29,6 @@
 - (IBAction)closeAction:(id)sender;
 - (IBAction)flashAction:(id)sender;
 - (IBAction)cameraPositionChangeAction:(id)sender;
-
 @end
 
 @implementation CameraViewController {
@@ -119,32 +118,53 @@
     [self.view bringSubviewToFront:self.touchView];
     [self.view bringSubviewToFront:self.footerView];
     [self.view bringSubviewToFront:self.headerView];
+    
+    
+    CGFloat angle = 90.0 * M_PI / 180.0;
+    self.previewImage.transform = CGAffineTransformMakeRotation(angle);
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [_session stopRunning];
+- (void)viewWillAppear:(BOOL)animate
+{
+    [super viewWillAppear:animate];
     
+    // Navigation Bar, Status Bar, ToolBarを非表示に
+    [UIApplication sharedApplication].statusBarHidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.tintColor = [UIColor clearColor];
+    
+    self.previewImage.backgroundColor = [UIColor blackColor];
 }
--(void)viewWillDisapper:(BOOL)animated{
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // セッションの開始
+    [_session startRunning];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewWillDisappear:animated];
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.navigationController.navigationBar.hidden = NO;
     //    self.navigationController.navigationBar.tintColor = [UIColor colorWithHex:0xa5cacc];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"戻る" style:UIBarButtonItemStyleBordered target:nil action:nil];
 }
--(void)viewDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [UIApplication sharedApplication].statusBarHidden = NO;
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"戻る" style:UIBarButtonItemStyleBordered target:nil action:nil];
-}
--(void)viewDidDisappear:(BOOL)animated{
+
+- (void)viewDidDisappear:(BOOL)animated
+{
     [super viewDidDisappear:animated];
+    
+    
     [_session stopRunning];
 }
--(void)didTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer{
+
+- (void)didTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer
+{
     _layerHideCount++;
+    
     CGPoint point = [tapGestureRecognizer locationInView:tapGestureRecognizer.view];
     [_focusView.layer removeAllAnimations];
     
@@ -153,19 +173,21 @@
     [UIView setAnimationDuration:0.2];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    [UIView setAnimationDidStopSelector:@selector(startupAnimationCone)];
+    [UIView setAnimationDidStopSelector:@selector(startupAnimationDone)];
     _focusView.alpha = 1;
-    _focusView.frame = CGRectMake(point.x - FOCUS_LAYER_RECT_SIZE / 2.f,point.y - FOCUS_LAYER_RECT_SIZE / 2.f,FOCUS_LAYER_RECT_SIZE,FOCUS_LAYER_RECT_SIZE);
+    _focusView.frame = CGRectMake(point.x - FOCUS_LAYER_RECT_SIZE / 2.f, point.y - FOCUS_LAYER_RECT_SIZE / 2.f, FOCUS_LAYER_RECT_SIZE, FOCUS_LAYER_RECT_SIZE);
     [self setPoint:point];
     [UIView commitAnimations];
-    
 }
--(void)startupAnimationDone{
-    if(_layerHideCount > 1){
+
+- (void)startupAnimationDone
+{
+    if (_layerHideCount > 1) {
         _layerHideCount--;
         return;
     }
-    [UIView  beginAnimations:nil context:nil];
+    
+    [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
@@ -174,7 +196,6 @@
     
     _layerHideCount--;
 }
-
 
 - (void)setPoint:(CGPoint)point
 {
@@ -198,6 +219,7 @@
         [captureDevice unlockForConfiguration];
     }
 }
+
 - (AVCaptureDevice *)cameraWithPosition:(AVCaptureDevicePosition)position {
     NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     for (AVCaptureDevice *device in devices) {
@@ -242,31 +264,18 @@
     }
 }
 
--(void)addAnimation{
-    // もし上のシャッターがなかったら
+- (void)addAnimation
+{
     if (!self.shutterUpper) {
-        // shutterUpperを作ります
         CALayer *shutterUpper = [CALayer layer];
-        
-        // shutterUpperの位置と大きさを決めます
         shutterUpper.frame = CGRectMake(0, 0, self.previewImage.frame.size.width, self.previewImage.frame.size.height / 2);
-        
-        // 上のシャッターの背景色を黒にします
         shutterUpper.backgroundColor = [UIColor blackColor].CGColor;
-        
-        // プレビュー画面にshutterUppweを貼り付けます
         [self.previewImage.layer addSublayer:shutterUpper];
         self.shutterUpper = shutterUpper;
         
-        // 下のシャッターを作ります
         CALayer *shutterLower = [CALayer layer];
-        
-        // 位置と大きさを決めます
         shutterLower.frame = CGRectMake(0, 0, self.previewImage.frame.size.width, self.previewImage.frame.size.height / 2);
-        // 下のシャッターの背景色を黒にします
         shutterLower.backgroundColor = [UIColor blackColor].CGColor;
-        
-        // previewImageに下のシャッターを貼り付けます
         [self.previewImage.layer addSublayer:shutterLower];
         self.shutterLower = shutterLower;
     } else {
@@ -286,16 +295,10 @@
     animation1.fromValue = [NSValue valueWithCGPoint:CGPointMake(self.previewImage.center.x, self.previewImage.frame.origin.y - self.shutterUpper.frame.size.height)];
     animation1.toValue = [NSValue valueWithCGPoint:CGPointMake(self.previewImage.center.x, self.previewImage.frame.origin.y + (self.shutterUpper.frame.size.height / 2))];
     
-    // 0.1秒かけてアニメーションさせます
     animation1.duration = .1;
-    // 1回だけ繰り返します
     animation1.repeatCount = 1;
-    // 自動でアニメーションを戻します
     animation1.autoreverses = YES;
-    // アニメーションの開始時間を0.5秒遅らせます
     animation1.beginTime = CACurrentMediaTime() + 0.5;
-    
-    // 設定したアニメーションを動作させます
     [self.shutterUpper addAnimation:animation1 forKey:@"move"];
     
     
@@ -317,20 +320,18 @@
     [self.shutterLower addAnimation:animation2 forKey:@"move"];
 }
 
+
+
 # pragma CAAnimation Delegate
 
-// アニメーションが終わった時を取得します
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
 {
-    // シャッターを隠します
     self.shutterUpper.hidden = YES;
     self.shutterLower.hidden = YES;
 }
 
-// カメラで撮影するアクション
 - (IBAction)captureAction:(id)sender
 {
-    // 動画をとっている一部を切り取るように、画像を切り取ります
     [self addAnimation];
     AVCaptureConnection *videoConnection = nil;
     for (AVCaptureConnection *connection in _dataOutputImage.connections) {
@@ -358,7 +359,6 @@
                                                       UIImage *originalImage = [[UIImage alloc] initWithData:data];
                                                       UIImage *croppedImage = [self trimmingImage:originalImage.CGImage height:originalImage.size.height width:originalImage.size.width];
                                                       // 反転させる
-                                                      // MARK: 反転解除
                                                       UIImage *image = [UIImage imageWithCGImage:croppedImage.CGImage scale:1.0f orientation:UIImageOrientationRight];
                                                       
                                                       //ALAssetLibraryのインスタンス作成
@@ -372,14 +372,13 @@
                                                                   //URLをクラスインスタンスに保持
                                                                   _groupURL = [group valueForProperty:ALAssetsGroupPropertyURL];
                                                                   _albumWasFound = TRUE;
-                                                                  // MARK: image -> croppedImage
+                                                                  
                                                                   [__self saveAsset:image];
                                                               }
                                                               //アルバムがない場合は新規作成
                                                           } else if (_albumWasFound==FALSE) {
                                                               ALAssetsLibraryGroupResultBlock resultBlock = ^(ALAssetsGroup *group) {
                                                                   _groupURL = [group valueForProperty:ALAssetsGroupPropertyURL];
-                                                                  // MARK: image -> croppedImage
                                                                   [__self saveAsset:image];
                                                               };
                                                               
@@ -540,7 +539,7 @@
     
     sourcePicture = [[GPUImagePicture alloc] initWithImage:image smoothlyScaleOutput:YES];
     //    sepiaFilter = [[GPUImageTiltShiftFilter alloc] init];
-    sepiaFilter = [[GPUImageSobelEdgeDetectionFilter alloc] init];
+    sepiaFilter = [[GPUImageErosionFilter alloc] init];
     
     GPUImageView *imageView = (GPUImageView *)self.previewImage;
     //    [sepiaFilter forceProcessingAtSize:imageView.sizeInPixels]; // This is now needed to make the filter run at the smaller output size
@@ -576,4 +575,26 @@
     CGImageRelease(cgImage);
     CGContextRelease(cgContext);
 }
+
+-(IBAction)getScreenshotImage{
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    UIGraphicsBeginImageContext(rect.size);
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    [app.keyWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    CGRect trimArea = CGRectMake(1, self.previewImage.frame.origin.y + 1, self.previewImage.frame.size.width - 2, self.previewImage.frame.size.height - 2);
+    CGImageRef srcImageRef = [img CGImage];
+    CGImageRef trimmedImageRef = CGImageCreateWithImageInRect(srcImageRef, trimArea);
+    UIImage *trimmedImage = [UIImage imageWithCGImage:trimmedImageRef];
+    
+    UIGraphicsGetImageFromCurrentImageContext();
+    UIImageWriteToSavedPhotosAlbum(trimmedImage, self, @selector(onCompleate:didFinishSavingWithError:contextInfo:), nil);
+}
+
+-(void)onCompleate:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void*)contextInfo{
+    NSLog(@"画面キャプチャー完了");
+}
+
 @end
